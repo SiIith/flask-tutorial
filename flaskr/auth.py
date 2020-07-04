@@ -20,7 +20,7 @@ bp = Blueprint('auth', __name__, url_prefix='/auth')
 # the endpoint/name of the view is by default the same to the view function
 # in this blueprint, every view is prepended with the name of the bp
 # The complete url is therefore '.../auth/register'
-@bp.route('/register', method = ('GET', 'POST'))
+@bp.route('/register', methods = ('GET', 'POST'))
 def register():
     # if a form is submitted (i.e. method 'POST'), reads the information and starts validating
     # form is a special dict-like object that maps key-val pairs
