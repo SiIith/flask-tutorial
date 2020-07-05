@@ -1,11 +1,12 @@
 <!doctype html>
 <!-- the title, header and content blocks will be overridden in other templates -->
+<!-- css introduction: https://www.w3schools.com/css/ -->
 <title>{% block title %}{% endblock %} - Flaskr</title>
 <link rel = "stylesheet" href = "{{ url_for('static', filename ='style.css')}}">
 <!-- display logout screen w/ username or login/register screen based on whether a user is logged -->
 <nav>
     <h1>Flaskr</h1>
-    <img src="https://flask.palletsprojects.com/en/1.1.x/_static/flask-icon.png" alt="A flask icon, src for flask website">
+    <img src="https://flask.palletsprojects.com/en/1.1.x/_static/flask-icon.png" alt="A flask icon">
     <ul>
         {% if g.user %}
             <li><span>{{ g.user['username'] }}</span>
