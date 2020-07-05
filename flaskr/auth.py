@@ -1,9 +1,11 @@
 """
 authentication blueprint. Related views and code are registered here first before passing to application when
 available in factory function
+A view is a function that responds to requests to the application.
+The name associated with a view is called the endpoint, which is by default the name of the view function
 """
 
-import functools # module for higher order functions (i.e. funcs that act on or returns other funcs)
+import functools  # module for higher order functions (i.e. funcs that act on or returns other funcs)
 
 from flask import Blueprint, flash, g, redirect, render_template, request, session, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -37,7 +39,8 @@ def register():
 
         # fetchone returns one row of the query and asserts it's not null
         elif db.execute(
-            'SELECT id FROM user WHERE username = ?', (username,)).fetchone() is not None:
+            'SELECT id FROM user WHERE username = ?', (username,)
+        ).fetchone() is not None:
             error = "User {} already exists.".format(username)
 
         if error is None:
