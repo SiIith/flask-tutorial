@@ -18,6 +18,7 @@ from flaskr.db import get_db
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 
+
 # associates the url with the function register.
 # the endpoint/name of the view is by default the same to the view function
 # in this blueprint, every view is prepended with the name of the bp
