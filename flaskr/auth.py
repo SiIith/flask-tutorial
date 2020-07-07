@@ -1,9 +1,11 @@
 """
 authentication blueprint. Related views and code are registered here first before passing to application when
 available in factory function
+A view is a function that responds to requests to the application.
+The name associated with a view is called the endpoint, which is by default the name of the view function
 """
 
-import functools # module for higher order functions (i.e. funcs that act on or returns other funcs)
+import functools  # module for higher order functions (i.e. funcs that act on or returns other funcs)
 
 from flask import Blueprint, flash, g, redirect, render_template, request, session, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -16,11 +18,12 @@ from flaskr.db import get_db
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 
+
 # associates the url with the function register.
 # the endpoint/name of the view is by default the same to the view function
 # in this blueprint, every view is prepended with the name of the bp
 # The complete url is therefore '.../auth/register'
-@bp.route('/register', method = ('GET', 'POST'))
+@bp.route('/register', methods = ('GET', 'POST'))
 def register():
     # if a form is submitted (i.e. method 'POST'), reads the information and starts validating
     # form is a special dict-like object that maps key-val pairs
@@ -37,7 +40,8 @@ def register():
 
         # fetchone returns one row of the query and asserts it's not null
         elif db.execute(
-            'SELECT id FROM user WHERE username = ?', (username,)).fetchone() is not None:
+            'SELECT id FROM user WHERE username = ?', (username,)
+        ).fetchone() is not None:
             error = "User {} already exists.".format(username)
 
         if error is None:
@@ -83,7 +87,6 @@ def login():
         flash(error)
 
     return render_template('auth/login.html')
-
 
 # registers a function that runs before the view function
 # checks if a user is stored and pass it to g.user which will be stored for the request duration

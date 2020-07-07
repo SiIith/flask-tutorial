@@ -9,21 +9,20 @@ from flask.cli import with_appcontext
 # g is an object unique for each request and stores information needed
 def get_db():
     if 'db' not in g:
-
-        # establish a connection the the database pointed by config which can be empty atm
         g.db = sqlite3.connect(
             current_app.config['DATABASE'],
             detect_types=sqlite3.PARSE_DECLTYPES
         )
         g.db.row_factory = sqlite3.Row
 
-        return g.db
+    return g.db
 
 def close_db(e=None):
     db = g.pop('db', None)
 
     if db is not None:
         db.close()
+
 
 def init_db():
     # returns database connection
@@ -32,6 +31,7 @@ def init_db():
     # opens a file relative to the flaskr package. Executes script using the connection above
     with current_app.open_resource('schema.sql') as f:
         db.executescript(f.read().decode('utf8'))
+
 
 # defines a command line command called init_db which calls the function
 # returns success message
