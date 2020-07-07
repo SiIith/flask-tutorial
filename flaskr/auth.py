@@ -88,7 +88,6 @@ def login():
 
     return render_template('auth/login.html')
 
-
 # registers a function that runs before the view function
 # checks if a user is stored and pass it to g.user which will be stored for the request duration
 @bp.before_app_request
