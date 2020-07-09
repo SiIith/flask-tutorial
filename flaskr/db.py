@@ -42,6 +42,7 @@ def init_db_command():
     init_db()
     click.echo('Database is initialized')
 
+
 # registers close_db and init_db_command so they can be used by the app
 def init_app(app):
     app.teardown_appcontext(close_db)
